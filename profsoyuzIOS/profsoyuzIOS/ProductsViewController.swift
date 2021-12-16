@@ -32,6 +32,7 @@ class ProductsViewController: UIViewController {
                                     ]
     var mainCategory: Category!
     var subCats: [SubCategory]!
+    var subCatsChildsVisible: [Bool]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +41,13 @@ class ProductsViewController: UIViewController {
 
         mainCategory = products.first?.category.category
         subCats = []
+        subCatsChildsVisible = []
         for p in products {
             if subCats.contains(where: {$0.id == p.category.id}) {
                 continue
             }
             subCats.append(p.category)
+            subCatsChildsVisible.append(false)
         }
         
         
@@ -72,7 +75,9 @@ extension ProductsViewController: UITableViewDataSource {
         cell.subCatLabel.text = subCats[indexPath.row].name
         cell.subCAtsCountLabel.text = String(cell.products.count)
         cell.buttonView.setOnClickListener {
+            cell.productTableView.isHidden = cell.isActivated
             cell.isActivated = !cell.isActivated
+            self.subCatsChildsVisible[indexPath.row] = cell.isActivated
             cell.productTableView.reloadData()
             self.productsTableView.reloadData()
         }
@@ -83,15 +88,9 @@ extension ProductsViewController: UITableViewDataSource {
 
 extension ProductsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-return 150
-        //        guard let cell = productsTableView.cellForRow(at: indexPath) as? SubCategoryTableViewCell
-//        else {
-//            return 150
-//        }
-//        if !cell.isActivated {
-//            return 70
-//        }
-//        return CGFloat(70 + cell.products.count * 40)
+        let products = products.filter{$0.category.id == subCats[indexPath.row].id}
+        
+        return CGFloat(70 + (subCatsChildsVisible[indexPath.row] ? products.count * 50 : 0))
     }
     
 }
