@@ -12,5 +12,7 @@ public struct Shop {
     let distance: Double
     let logo: String?
     let address: String
+    var background: String?
+    var products: [Product]?
     
 }

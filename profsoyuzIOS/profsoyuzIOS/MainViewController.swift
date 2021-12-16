@@ -111,7 +111,10 @@ extension MainViewController: SideMenuViewControllerDelegate {
             self.showViewController(viewController: UINavigationController.self, storyboardId: "HomeNavID")
         case 1:
             // Music
-            self.showViewController(viewController: UINavigationController.self, storyboardId: "MusicNavID")
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "ShopNavID")
+        case 2:
+            // Music
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "ProductNavId")
         default:
             break
         }

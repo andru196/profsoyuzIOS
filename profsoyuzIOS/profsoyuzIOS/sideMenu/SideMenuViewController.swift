@@ -17,7 +17,7 @@ class SideMenuViewController: UIViewController {
     var menu: [SideMenuModel] = [
         SideMenuModel(icon: UIImage(systemName: "creditcard.fill")!, title: "Способ оплаты", extra: "Apple Pay"),
         SideMenuModel(icon: UIImage(systemName: "envelope.open")!, title: "Добавить почту"),
-        //SideMenuModel(icon: UIImage(systemName: "question.circle")!, title: "Movies")
+        SideMenuModel(icon: UIImage(systemName: "creditcard")!, title: "Этого тут не будет")
     ]
 
     var delegate: SideMenuViewControllerDelegate?
@@ -39,7 +39,7 @@ class SideMenuViewController: UIViewController {
         // Footer
         self.footerLabel.textColor = UIColor.white
         self.footerLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        self.footerLabel.text = "Developed by John Codeos"
+        self.footerLabel.text = "Developed by Andru"
 
         // Register TableView Cell
         self.sideMenuTableView.register(SideMenuCell.nib, forCellReuseIdentifier: SideMenuCell.identifier)

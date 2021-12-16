@@ -9,4 +9,5 @@ import Foundation
 
 struct User {
     let phone: String
+    let name: String?
 }

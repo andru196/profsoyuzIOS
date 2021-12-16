@@ -7,6 +7,10 @@
 
 import Foundation
 
-public class Product {
-    
+public struct Product {
+    let id: Int32
+    let name: String
+    let category: SubCategory
+    let price: String
+    let description: String
 }
