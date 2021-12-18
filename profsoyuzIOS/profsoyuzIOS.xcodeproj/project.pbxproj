@@ -83,6 +83,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B22A9F40276E4A6C00C9A08E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B22A9F41276E4A8300C9A08E /* xib */,
+				B218830627667782007A5AAD /* ProductTableViewCell.swift */,
+				B218830A27667799007A5AAD /* SubCategoryTableViewCell.swift */,
+				B218830027651199007A5AAD /* CategoryTableViewCell.swift */,
+				B2B2145E2742FFF900F90A88 /* ShopTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B22A9F41276E4A8300C9A08E /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				B218830127651199007A5AAD /* CategoryTableViewCell.xib */,
+				B2B2145F2742FFF900F90A88 /* ShopTableViewCell.xib */,
+				B218830727667782007A5AAD /* ProductTableViewCell.xib */,
+				B218830B27667799007A5AAD /* SubCategoryTableViewCell.xib */,
+			);
+			path = xib;
+			sourceTree = "<group>";
+		};
+		B22A9F42276E4AA100C9A08E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B2B214342742409C00F90A88 /* ViewController.swift */,
+				B2B2144C2742B64B00F90A88 /* MainViewController.swift */,
+				B21882FE27640F7C007A5AAD /* ShopViewController.swift */,
+				B218830E2766A7A2007A5AAD /* ProductsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		B2B214242742409C00F90A88 = {
 			isa = PBXGroup;
 			children = (
@@ -102,26 +136,16 @@
 		B2B2142F2742409C00F90A88 /* profsoyuzIOS */ = {
 			isa = PBXGroup;
 			children = (
-				B218830627667782007A5AAD /* ProductTableViewCell.swift */,
-				B218830A27667799007A5AAD /* SubCategoryTableViewCell.swift */,
-				B218830B27667799007A5AAD /* SubCategoryTableViewCell.xib */,
-				B218830727667782007A5AAD /* ProductTableViewCell.xib */,
+				B22A9F42276E4AA100C9A08E /* Controllers */,
+				B22A9F40276E4A6C00C9A08E /* Cells */,
 				B2B2144E2742B94F00F90A88 /* sideMenu */,
 				B2B214452742435B00F90A88 /* models */,
 				B2B214302742409C00F90A88 /* AppDelegate.swift */,
 				B2B214322742409C00F90A88 /* SceneDelegate.swift */,
-				B2B214342742409C00F90A88 /* ViewController.swift */,
 				B2B214362742409C00F90A88 /* Main.storyboard */,
-				B218830027651199007A5AAD /* CategoryTableViewCell.swift */,
-				B218830127651199007A5AAD /* CategoryTableViewCell.xib */,
 				B2B214392742409E00F90A88 /* Assets.xcassets */,
 				B2B2143B2742409E00F90A88 /* LaunchScreen.storyboard */,
 				B2B2143E2742409E00F90A88 /* Info.plist */,
-				B2B2144C2742B64B00F90A88 /* MainViewController.swift */,
-				B2B2145E2742FFF900F90A88 /* ShopTableViewCell.swift */,
-				B2B2145F2742FFF900F90A88 /* ShopTableViewCell.xib */,
-				B21882FE27640F7C007A5AAD /* ShopViewController.swift */,
-				B218830E2766A7A2007A5AAD /* ProductsViewController.swift */,
 				B22A9F3C276DFC4400C9A08E /* DataController.swift */,
 				B22A9F3E276E134C00C9A08E /* ViewControllerPlus.swift */,
 			);

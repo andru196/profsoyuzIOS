@@ -15,6 +15,7 @@ class SubCategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var productTableView: UITableView!
     class var identifier: String { return String(describing: self) }
     class var nib: UINib { return UINib(nibName: identifier, bundle: nil) }
+    var viewC: UIViewController!
     
     var products: [Product]!
     private var _isActive: Bool = true
@@ -58,6 +59,7 @@ extension SubCategoryTableViewCell : UITableViewDataSource {
         cell.nameLabel.text = product.name
         cell.descriptionLabel.text = product.description
         cell.buyButton.titleLabel?.text = product.price
+        cell.viewC = viewC
         return cell
     }
 }

@@ -15,13 +15,10 @@ class ShopsViewController: ViewControllerWithData {
     var categories: [Category]!
 
     @IBOutlet weak var titleView: UIView!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
-    
     @IBOutlet weak var categoriesTableView: UITableView!
-    
     @IBOutlet weak var sideMenuBtn: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dataController = (parent!.parent as! ViewControllerWithData).dataController
@@ -29,7 +26,18 @@ class ShopsViewController: ViewControllerWithData {
         
         titleLabel.text = shop.name
         if let image = shop.background {
-            titleView.backgroundColor = UIColor(patternImage: UIImage(named: image)!)
+            let uiImage = UIImage(named: image)!
+            
+            titleView.backgroundColor = UIColor(patternImage: uiImage)
+            
+            titleView.layoutIfNeeded()
+            
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: titleView.bounds.width, height: titleView.bounds.height))
+            imageView.image = uiImage
+            titleView.addSubview(imageView)
+            
+            imageView.addSubview(titleLabel)
+            
         }
         sideMenuBtn.target = revealViewController()
         sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
@@ -48,6 +56,13 @@ class ShopsViewController: ViewControllerWithData {
         self.categoriesTableView.reloadData()
         tableViewView.layer.cornerRadius = 30
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        //titleView.subviews.first?.contentMode = .scaleAspectFit
+    }
+
 }
 
 extension ShopsViewController: UITableViewDataSource {

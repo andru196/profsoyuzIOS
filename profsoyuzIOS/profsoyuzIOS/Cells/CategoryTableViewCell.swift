@@ -33,7 +33,8 @@ class CategoryTableViewCell: UITableViewCell {
         self.category = category
         nameLabel.text = category.name
         if let image = category.image {
-            contentView.backgroundColor = UIColor(patternImage: UIImage(named: image)!)
+            let uiImage = UIImage(named: image)!
+            contentView.backgroundColor = UIColor(patternImage: uiImage)
         }
     }
     

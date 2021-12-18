@@ -36,7 +36,7 @@ class ProductsViewController: ViewControllerWithData {
             subCats.append(p.category)
         }
         
-        
+        categoryNameLabel.text = mainCategory?.name
         productsTableView.reloadData()
         // Do any additional setup after loading the view.
     }
@@ -76,13 +76,13 @@ extension ProductsViewController: UITableViewDataSource {
             } else {
                 self.productsTableView.reloadRows(at: [indexPath], with: .top)
             }
-
         }
         if let isActive = self.subCatsChildsVisible[indexPath.section]?[indexPath.row] {
             cell.productTableView.isHidden = !isActive
             cell.isActivated = isActive
             cell.productTableView.reloadData()
         }
+        cell.viewC = self
         print("\(cell.subCatLabel.text!) isHidden:\(cell.productTableView.isHidden)")
         return cell
     }

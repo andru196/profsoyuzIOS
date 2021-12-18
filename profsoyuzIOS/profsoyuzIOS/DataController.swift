@@ -38,7 +38,20 @@ class DataController {
                                   address: "Новослободская 16А",
                                   background: "ducks",
                                 products: [ap1, ap2, ap3, ap4, ap5])
-        return [shop1, shop2]
+        
+        
+        let vineCat = Category(id: 3, name: "Вина", image:"vine")
+        let vineSubCat1 = SubCategory(id: 7, category: vineCat, name: "Красное")
+        let vp = Product(id: 8, name: "Bodegas Contador", category: vineSubCat1, price:"3710 Р", description: "\"Contador\", Rioja DOCa, 2005 750ml")
+        
+        let shop3 = Shop(name: "DeadSkull",
+                                  distance: 32.3,
+                                  logo: "skulls",
+                                  address: "Новослободская 16А",
+                                  background: "skulls",
+                                products: [ap1, ap2, ap3, ap4, ap5, bp1, bp2, bp3, vp])
+        
+        return [shop1, shop2, shop3]
     }()
 
     private var selectedShop: Int = 0

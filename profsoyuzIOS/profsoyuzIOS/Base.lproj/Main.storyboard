@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdA-yw-bJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139.13043478260872" y="743.97321428571422"/>
+            <point key="canvasLocation" x="-904" y="675"/>
         </scene>
         <!--Products View Controller-->
         <scene sceneID="LWx-vG-tuC">
@@ -187,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLV-5w-DTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702.89855072463774" y="743.97321428571422"/>
+            <point key="canvasLocation" x="-117" y="675"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cQO-XL-F3L">
@@ -219,7 +219,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4i-sc-GWu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="428" y="-36"/>
+            <point key="canvasLocation" x="-116" y="-4"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="iaH-GX-gQP">
@@ -252,10 +252,13 @@
                                 <rect key="frame" x="0.0" y="44" width="300" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-2T-G1B">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="120"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="120"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="R3R-Do-g5z">
-                                                <rect key="frame" x="20" y="21.5" width="100" height="77.5"/>
+                                                <rect key="frame" x="20" y="21.5" width="75" height="77.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="djY-nG-Yd5"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.9399776937943457" green="0.96029200749377541" blue="1" alpha="0.24001448675496689" colorSpace="custom" customColorSpace="displayP3"/>
@@ -272,8 +275,8 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+7-929-982-80-02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-8V-Eqg">
-                                        <rect key="frame" x="148" y="0.0" width="152" height="120"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-8V-Eqg">
+                                        <rect key="frame" x="123" y="0.0" width="177" height="120"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
