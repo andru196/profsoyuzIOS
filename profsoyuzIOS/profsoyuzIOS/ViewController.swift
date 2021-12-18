@@ -7,16 +7,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: ViewControllerWithData {
     
-
+    var shops: [Shop]!
     @IBOutlet weak var shopsTableView: UITableView!
-    let shops: [Shop] = [Shop(name: "BugagaBar", distance: 32.3, logo: nil, address: "Новослободская 16А"),
-                         Shop(name: "BugagaBar", distance: 32.3, logo: nil, address: "Новослободская 16А")]
     @IBOutlet weak var sideMenuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataController = (parent!.parent as! ViewControllerWithData).dataController
+        
+        shops = dataController.shops
+        
         // Do any additional setup after loading the view.
         sideMenuBtn.target = revealViewController()
                 sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
@@ -49,6 +52,10 @@ extension ViewController: UITableViewDataSource {
         cell.addressLabel.text = shop.address
         cell.distanceLabel.text = String.init(format: "%.2f КМ", shop.distance)
         cell.titleLabel.text = shop.name
+        if let logo = shop.logo {
+            cell.icoImageView.image = UIImage(named: logo)
+            cell.icoImageView.contentMode = .scaleAspectFill
+        }
         return cell
     }
     
@@ -67,4 +74,11 @@ extension ViewController: UITableViewDelegate {
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let par = self.parent!.parent as? MainViewController else {
+            return
+        }
+        dataController.selectShop(i: indexPath.section)
+        par.showViewController(viewController: UINavigationController.self, storyboardId: "ShopNavID")
+    }
 }

@@ -22,6 +22,12 @@ class ShopTableViewCell: UITableViewCell {
         // Initialization code
         self.layer.cornerRadius = 30
         contentView.layer.cornerRadius = 30
+        
+        icoImageView.layer.borderWidth = 0
+        icoImageView.layer.masksToBounds = false
+        icoImageView.layer.borderColor = UIColor.black.cgColor
+        icoImageView.layer.cornerRadius = icoImageView.frame.height/2
+        icoImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

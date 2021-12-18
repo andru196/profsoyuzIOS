@@ -24,13 +24,6 @@ class SubCategoryTableViewCell: UITableViewCell {
         }
         set (valuew) {
             _isActive = valuew
-            if valuew {
-                productTableView.frame.size.height = CGFloat((products?.count ?? 0) * 40)
-//                productTableView.frame = CGRect(x: 0 , y: self.frame.height * 0.7, width: self.frame.width, height: self.frame.height * 0.3)
-            } else {
-                productTableView.frame.size.height = 1
-                
-            }
         }
     }
     
@@ -40,9 +33,8 @@ class SubCategoryTableViewCell: UITableViewCell {
         self.productTableView.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
         
         productTableView.reloadData()
-        
-        
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -52,10 +44,7 @@ class SubCategoryTableViewCell: UITableViewCell {
 
 extension SubCategoryTableViewCell : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isActivated {
-            return products?.count ?? 0
-        }
-        return 0
+        return products?.count ?? 0
         
     }
     
@@ -75,10 +64,7 @@ extension SubCategoryTableViewCell : UITableViewDataSource {
 
 extension SubCategoryTableViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isActivated {
-            return 50
-        }
-        return 1
+        return 50
     }
     
 }
@@ -90,6 +76,7 @@ extension UIView {
      func setOnClickListener(action :@escaping () -> Void){
         let tapRecogniser = ClickListener(target: self, action: #selector(onViewClicked(sender:)))
         tapRecogniser.onClick = action
+         self.gestureRecognizers?.removeAll()
         self.addGestureRecognizer(tapRecogniser)
      }
      

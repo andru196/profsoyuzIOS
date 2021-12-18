@@ -7,27 +7,25 @@
 
 import UIKit
 
-class ShopsViewController: UIViewController {
+class ShopsViewController: ViewControllerWithData {
     
     @IBOutlet weak var tableViewView: UIView!
     
-    var shop: Shop! = Shop(name: "BugagaBar",
-                           distance: 32.3,
-                           logo: nil,
-                           address: "Новослободская 16А",
-                           background: "mandy",
-                           products: [Product(id: 1, name: "Лагер", category:
-                                                SubCategory(id: 1, category: Category(id: 1, name: "пиво", image: "bear"), name: "лагер"), price:"", description: "")])
+    var shop: Shop!
+    var categories: [Category]!
+
     @IBOutlet weak var titleView: UIView!
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    var categories: [Category]!
+    
     @IBOutlet weak var categoriesTableView: UITableView!
     
     @IBOutlet weak var sideMenuBtn: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataController = (parent!.parent as! ViewControllerWithData).dataController
+        shop = dataController.getShop()
         
         titleLabel.text = shop.name
         if let image = shop.background {
@@ -77,6 +75,14 @@ extension ShopsViewController: UITableViewDataSource {
 extension ShopsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let par = self.parent!.parent as? MainViewController else {
+            return
+        }
+        dataController.selectedCategory(id: Int(categories[indexPath.section].id))
+        par.showViewController(viewController: UINavigationController.self, storyboardId: "ProductNavId")
     }
     
 }

@@ -7,47 +7,33 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController {
+class ProductsViewController: ViewControllerWithData {
 
     
     @IBOutlet weak var categoryNameLabel: UILabel!
     @IBOutlet weak var productsTableView: UITableView!
     
     
-    var products: [Product]! = [Product(id: 1, name: "Лагер", category:
-                                            SubCategory(id: 1, category:
-                                                            Category(id: 1, name: "пиво", image:"bear"),
-                                                name: "Light"),
-                                        price:"220 Р", description: "7%"),
-                                Product(id: 1, name: "Лагер free", category:
-                                                                        SubCategory(id: 1, category:
-                                                                                        Category(id: 1, name: "пиво", image:"bear"),
-                                                                            name: "Light"),
-                                                                    price:"20 Р", description: "0%"),
-                                Product(id: 2, name: "Темное не фильтрованное", category:
-                                                                        SubCategory(id: 2, category:
-                                                                                        Category(id: 1, name: "пиво", image:"bear"),
-                                                                            name: "Dark"),
-                                                                    price:"280 Р", description: "9.3%")
-                                    ]
+    var products: [Product]!
     var mainCategory: Category!
     var subCats: [SubCategory]!
-    var subCatsChildsVisible: [Bool]!
+    var subCatsChildsVisible: [Int: [Int:Bool]]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dataController = (parent!.parent as! ViewControllerWithData).dataController
+        products = dataController.getSelectedProduct()
+        
         self.productsTableView.register(SubCategoryTableViewCell.nib, forCellReuseIdentifier: SubCategoryTableViewCell.identifier)
 
         mainCategory = products.first?.category.category
         subCats = []
-        subCatsChildsVisible = []
+        subCatsChildsVisible = [:]
         for p in products {
             if subCats.contains(where: {$0.id == p.category.id}) {
                 continue
             }
             subCats.append(p.category)
-            subCatsChildsVisible.append(false)
         }
         
         
@@ -75,13 +61,29 @@ extension ProductsViewController: UITableViewDataSource {
         cell.subCatLabel.text = subCats[indexPath.row].name
         cell.subCAtsCountLabel.text = String(cell.products.count)
         cell.buttonView.setOnClickListener {
-            cell.productTableView.isHidden = cell.isActivated
-            cell.isActivated = !cell.isActivated
-            self.subCatsChildsVisible[indexPath.row] = cell.isActivated
-            cell.productTableView.reloadData()
-            self.productsTableView.reloadData()
+            print("\(cell.subCatLabel.text!) pressed")
+            if self.subCatsChildsVisible[indexPath.section] == nil {
+                self.subCatsChildsVisible[indexPath.section] = [:]
+            }
+            if self.subCatsChildsVisible[indexPath.section]![indexPath.row] == nil {
+                self.subCatsChildsVisible[indexPath.section]![indexPath.row] = true
+            } else {
+                self.subCatsChildsVisible[indexPath.section]![indexPath.row] = !self.subCatsChildsVisible[indexPath.section]![indexPath.row]!
+            }
+            let isActive = self.subCatsChildsVisible[indexPath.section]![indexPath.row]!
+            if isActive {
+                self.productsTableView.reloadRows(at: [indexPath], with: .bottom)
+            } else {
+                self.productsTableView.reloadRows(at: [indexPath], with: .top)
+            }
+
         }
-        cell.productTableView.reloadData()
+        if let isActive = self.subCatsChildsVisible[indexPath.section]?[indexPath.row] {
+            cell.productTableView.isHidden = !isActive
+            cell.isActivated = isActive
+            cell.productTableView.reloadData()
+        }
+        print("\(cell.subCatLabel.text!) isHidden:\(cell.productTableView.isHidden)")
         return cell
     }
 }
@@ -89,8 +91,7 @@ extension ProductsViewController: UITableViewDataSource {
 extension ProductsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let products = products.filter{$0.category.id == subCats[indexPath.row].id}
-        
-        return CGFloat(70 + (subCatsChildsVisible[indexPath.row] ? products.count * 50 : 0))
+        return CGFloat(70 + ((subCatsChildsVisible[indexPath.section]?[indexPath.row] ?? false) ? products.count * 50 : 0))
     }
     
 }
